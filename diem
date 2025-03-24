@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chia sẻ thông tin</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+        .tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
+        .tab { padding: 10px; cursor: pointer; border-bottom: 2px solid transparent; }
+        .tab.active { border-bottom: 2px solid blue; font-weight: bold; }
+        .content { display: none; }
+        .content.active { display: block; }
+        .input-container { margin: 10px 0; }
+        input { width: 80%; padding: 8px; text-align: center; }
+        button { padding: 8px 15px; background: blue; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('icloud')">iCloud</div>
+        <div class="tab" onclick="switchTab('link')">Nhập Link</div>
+        <div class="tab" onclick="switchTab('video')">Video</div>
+        <div class="tab" onclick="switchTab('tiktok')">TikTok</div>
+    </div>
+
+    <div id="icloud" class="content active">
+        <h2>Thông tin iCloud</h2>
+        <div class="input-container">
+            <input type="text" id="email" value="chaoyuusrah@hotmail.com" readonly>
+            <button onclick="copyText('email')">Copy</button>
+        </div>
+        <div class="input-container">
+            <input type="text" id="password" value="Th67890@" readonly>
+            <button onclick="copyText('password')">Copy</button>
+        </div>
+    </div>
+
+    <div id="link" class="content">
+        <h2>Nhập Link</h2>
+        <p>Chức năng nhập link đang phát triển...</p>
+    </div>
+
+    <div id="video" class="content">
+        <h2>Video</h2>
+        <p>Chức năng video đang phát triển...</p>
+    </div>
+
+    <div id="tiktok" class="content">
+        <h2>TikTok</h2>
+        <p>Chức năng TikTok đang phát triển...</p>
+    </div>
+
+    <script>
+        function copyText(id) {
+            let input = document.getElementById(id);
+            input.select();
+            document.execCommand("copy");
+            alert("Đã copy: " + input.value);
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+
+            document.querySelector('.tab[onclick="switchTab(\'' + tab + '\')"]').classList.add('active');
+            document.getElementById(tab).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
